@@ -2,6 +2,17 @@
 #define LINKED_LIST_H
 
 #include <memory>
+// реализованы правило пяти
+// реализованы итераторы
+// реализованы операторы присваивания
+// реализованы методы доступа к элементам
+// реализованы методы добавления и удаления
+// реалзиованы методы поиска
+
+// изначально начал писать учитывая что head_ имеет тип unique_ptr
+// однако позже узнал, что есть не очевидная проблема в использование unique_ptr, связанная с рекусривный удалением
+// проблему решил написав деструктор
+// в остальном функционал повторяет forward_list из стандрантной библиотеки, тесты тому подтверждение
 
 template <class T>
 class LinkedList {
@@ -15,7 +26,7 @@ public:
     LinkedList(const LinkedList& other);
     LinkedList(LinkedList&& other) noexcept;
     LinkedList(std::initializer_list<T> il);
-    ~LinkedList(); // в связи с тем что оказывается unique_ptr будет удалять рекурсивно пришлось написать деструктор
+    ~LinkedList();
 
     LinkedList& operator=(const LinkedList& other);
     LinkedList& operator=(LinkedList&& other) noexcept;
